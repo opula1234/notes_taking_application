@@ -1,5 +1,5 @@
 import express from "express"
-
+import router from "./routes/notesRoutes";
 const app = express()
 
 app.get("/api/notes", (req, res) => {
