@@ -1,7 +1,12 @@
 import mongoose, { mongo } from "mongoose";
 
-// 1st step: You need to create a schema
-// 2nd step: You would create a model based off that schema
+/**
+ * @desc    Mongoose schema for Note documents
+ * @property {string} title - Title of the note (required)
+ * @property {string} content - Content/body of the note (required)
+ * @property {Date} createdAt - Timestamp when note was created (auto-generated)
+ * @property {Date} updatedAt - Timestamp when note was last updated (auto-generated)
+ */
 
 const noteSchema = new mongoose.Schema({
     title: {
@@ -16,6 +21,11 @@ const noteSchema = new mongoose.Schema({
     { timestamps: true } //createdAt, updatedAt
 );
 
+/**
+ * @desc    Mongoose model representing the Notes collection
+ * @model   Note
+ * @collection notes
+ */
 const Note = mongoose.model("Note", noteSchema)
 
 export default Note
