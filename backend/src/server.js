@@ -1,7 +1,9 @@
 import express from "express"
+import cors from "cors"
+import dotenv from "dotenv"
+
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
-import dotenv from "dotenv"
 import rateLimiter from "./middleware/rateLimiter.js";
 
 /**
@@ -74,8 +76,14 @@ const PORT = process.env.PORT || 5001
 // Global middleware
 // Parses incoming JSON request bodies and makes the data available on req.body.
 // Applied globally so all routes can access JSON payloads.
+app.use(cors(
+    {
+        origin: "http://localhost:5173"
+    }
+))
 app.use(express.json())
 app.use(rateLimiter)
+
 
 // our simple custom middleware
 // app.use((req, res, next) => {
